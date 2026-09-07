@@ -1,33 +1,31 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa'
+import Entrada from './pages/Entrada'
+import Saida from './pages/Saida'
+import logo from './assets/logo.png'
+import Bazarlogo from './assets/bazarlogo.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
+  return ( 
+     <BrowserRouter>
+
+      <Routes>
+
+        <Route
+          path="/"
+          element={
     <>
+    
       <section id="center">
         <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+          <img src={logo} className="logo" width="170" height="179" alt="Logo" />
         </div>
         <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+          <h1>Sistema de Estoque e Vendas</h1>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+        
       </section>
 
       <div className="ticks"></div>
@@ -35,78 +33,79 @@ function App() {
       <section id="next-steps">
         <div id="docs">
           <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
           </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
+          <img src={Bazarlogo} className="logo" width="185" height="140" alt="Bazar Logo" />
+          <h2>Bazar Window</h2>
+ <div className="btn-group">
+  <Link to="/Entrada" className="btn btn-entrada">Entrada</Link>
+  <Link to="/Saida" className="btn btn-saida">Saída</Link>
+</div>
+ </div>
+
+       <div id="social-redes">
+             <h2>Redes Sociais</h2>
           <ul>
             <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
+      
+       <a href="https://www.instagram.com/sua_empresa"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram (abre em nova aba)"
+      >
+        <FaInstagram className="button-icon" aria-hidden="true" />
+        Instagram
+      </a>
+    </li>
+   <li>
+      
+       <a href="https://www.facebook.com/sua_empresa"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook (abre em nova aba)"
+      >
+        <FaFacebook className="button-icon" aria-hidden="true" />
+        Facebook
+      </a>
+    </li>
+     <li>
+      
+       <a href="https://wa.me/sua_empresa"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp (abre em nova aba)"
+      >
+        <FaWhatsapp className="button-icon" aria-hidden="true" />
+        WhatsApp
+      </a>
+    </li>
           </ul>
         </div>
         <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
+         
+          <h2>Portal de Notícias</h2>
           <ul>
             <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
+              <a href="https://mercadoeconsumo.com.br/" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"
                   aria-hidden="true"
                 >
-                  <use href="/icons.svg#github-icon"></use>
+                  <use href="/icons.svg#documentation-icon"></use>
                 </svg>
-                GitHub
+                Mercado e Consumo
               </a>
             </li>
             <li>
-              <a href="https://chat.vite.dev/" target="_blank">
+              <a href="https://gironews.com/" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"
                   aria-hidden="true"
                 >
-                  <use href="/icons.svg#discord-icon"></use>
+                  <use href="/icons.svg#documentation-icon"></use>
                 </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
+                Giro News
               </a>
             </li>
           </ul>
@@ -115,8 +114,16 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
-    </>
-  )
-}
+    </> 
+    }
+   />     
+  
+  <Route path="/Entrada" element={<Entrada />} />
 
+  <Route path="/Saida" element={<Saida />} />
+
+</Routes>
+</BrowserRouter>
+)
+}
 export default App
