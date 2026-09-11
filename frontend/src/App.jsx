@@ -3,7 +3,7 @@ import { FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa'
 import Entrada from './pages/Entrada'
 import Saida from './pages/Saida'
 import logo from './assets/logo.png'
-import Bazarlogo from './assets/bazarlogo.png'
+import Bazarlogo from './assets/Bazarlogo.png'
 import './App.css'
 
 function App() {
