@@ -244,3 +244,29 @@
 .social-section h3 {
   margin-bottom: 12px;
 }
+.ticker-container {
+  overflow: hidden;
+  height: 300px;
+  position: relative;
+}
+
+.ticker-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  animation: rolar 20s linear infinite;
+}
+
+.ticker-lista li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+@keyframes rolar {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
