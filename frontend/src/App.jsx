@@ -5,6 +5,7 @@ import Saida from './pages/Saida'
 import logo from './assets/logo.png'
 import Bazarlogo from './assets/Bazarlogo.png'
 import './App.css'
+import PrevisaoTempo from './components/PrevisaoTempo'
 
 function App() {
 
@@ -80,36 +81,11 @@ function App() {
     </li>
           </ul>
         </div>
-        <div id="social">
-         
-          <h2>Portal de Notícias</h2>
-          <ul>
-            <li>
-              <a href="https://mercadoeconsumo.com.br/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#documentation-icon"></use>
-                </svg>
-                Mercado e Consumo
-              </a>
-            </li>
-            <li>
-              <a href="https://gironews.com/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#documentation-icon"></use>
-                </svg>
-                Giro News
-              </a>
-            </li>
-          </ul>
-        </div>
+
+  <div id="social">
+  <PrevisaoTempo />
+</div>    
+       
       </section>
 
       <div className="ticks"></div>
