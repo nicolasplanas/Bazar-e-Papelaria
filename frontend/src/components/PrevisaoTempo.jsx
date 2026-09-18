@@ -1,45 +1,86 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import '../PrevisaoTempo.css';
 
-function PrevisaoTempo() {
-  const [previsao, setPrevisao] = useState([])
-  const [erro, setErro] = useState(false)
+export function WeatherForecast() {
+  const [forecast, setForecast] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const latitude = -22.12
-    const longitude = -51.39
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max&timezone=America/Sao_Paulo`
+    fetchWeather();
+  }, []);
 
-    axios.get(url)
-      .then((resposta) => {
-        const dias = resposta.data.daily.time
-        const temperaturas = resposta.data.daily.temperature_2m_max
+  const fetchWeather = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('http://localhost:5000/api/weather');
+      
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.status === 'success') {
+        setForecast(data.forecast);
+        setError(null);
+      } else {
+        setError(data.message || 'Erro ao buscar previsão');
+      }
+    } catch (err) {
+      console.error('Erro:', err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        const dados = dias.map((dia, index) => ({
-          data: dia,
-          temperaturaMax: temperaturas[index],
-        }))
+  if (loading) {
+    return (
+      <div className="weather-container">
+        <div className="loading">Carregando previsão...</div>
+      </div>
+    );
+  }
 
-        setPrevisao(dados)
-      })
-      .catch(() => setErro(true))
-  }, [])
-
-  if (erro) return <p>Não foi possível carregar a previsão.</p>
-  if (previsao.length === 0) return <p>Carregando previsão...</p>
+  if (error) {
+    return (
+      <div className="weather-container">
+        <div className="error">❌ {error}</div>
+        <button onClick={fetchWeather} className="retry-btn">
+          Tentar novamente
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <h2>Previsão do tempo</h2>
-      <ul>
-        {previsao.map((dia) => (
-          <li key={dia.data}>
-            {dia.data} — {dia.temperaturaMax}°C
-          </li>
+    <div className="weather-container">
+      <h1 className="weather-title">Presidente Prudente SP</h1>
+      <h2 className="weather-title">Previsão - 6 Dias</h2>
+      
+      <div className="weather-grid">
+        {forecast.map((day, index) => (
+          <div key={index} className="weather-card">
+            <div className="day-name">{day.day}</div>
+            
+            <div className="weather-icon">
+              {day.icon}
+            </div>
+            
+            <div className="temperatures">
+              <span className="temp-max">{day.temp_max}°</span>
+              <span className="temp-min">{day.temp_min}°</span>
+            </div>
+            
+            <div className="description" title={day.description}>
+              {day.description}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
-  )
+  );
 }
 
-export default PrevisaoTempo
+export default WeatherForecast;
