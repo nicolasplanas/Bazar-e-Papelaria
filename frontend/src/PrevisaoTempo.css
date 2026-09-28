@@ -1,0 +1,175 @@
+/* Container Principal */
+.weather-container {
+  background-color: #1e1f27;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 900px;
+  margin: 20px auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Título */
+.weather-title {
+  color: white;
+  text-align: center;
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Grid de Cards */
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+}
+
+/* Card Individual */
+.weather-card {
+  background: rgba(186, 186, 186, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: white;
+  cursor: pointer;
+}
+
+.weather-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Dia da Semana */
+.day-name {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+/* Ícone do Clima */
+.weather-icon {
+  font-size: 48px;
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+}
+
+/* Temperaturas */
+.temperatures {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.temp-max {
+  color: #FFD700;
+  font-weight: 700;
+}
+
+.temp-min {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+/* Descrição */
+.description {
+  font-size: 11px;
+  opacity: 0.85;
+  line-height: 1.3;
+  word-break: break-word;
+  max-height: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/* Estados de Carregamento e Erro */
+.loading,
+.error {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  padding: 40px 20px;
+}
+
+.error {
+  color: #FFB6C1;
+}
+
+.retry-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .weather-container {
+    padding: 16px;
+    margin: 10px;
+  }
+
+  .weather-title {
+    font-size: 20px;
+  }
+
+  .weather-grid {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 10px;
+  }
+
+  .weather-card {
+    padding: 12px 10px;
+  }
+
+  .weather-icon {
+    font-size: 40px;
+    min-height: 40px;
+  }
+
+  .temperatures {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .weather-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+
+  .weather-card {
+    padding: 10px 8px;
+  }
+
+  .weather-icon {
+    font-size: 36px;
+  }
+}

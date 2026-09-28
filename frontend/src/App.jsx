@@ -6,6 +6,7 @@ import logo from './assets/logo.png'
 import Bazarlogo from './assets/Bazarlogo.png'
 import './App.css'
 import PrevisaoTempo from './components/PrevisaoTempo'
+import WeatherForecast from './components/WeatherForecast';
 
 function App() {
 
@@ -83,7 +84,7 @@ function App() {
         </div>
 
   <div id="social">
-  <PrevisaoTempo />
+  <WeatherForecast />
 </div>    
        
       </section>
