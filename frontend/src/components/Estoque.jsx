@@ -30,18 +30,18 @@ function Estoque() {
   )
 
   return (
-    <section id="estoque">
+    <section id="estoque-layout">
       <h1>Estoque Atual</h1>
 
-      <div>
-        <input
+      <div className="estoque-filtros">
+        <input className="estoque-busca"
           type="text"
           placeholder="Buscar produto..."
           value={busca}
           onChange={(e) => setBusca(e.target.value)}
         />
 
-        <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+        <select className="estoque-select" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
           <option value="">Todas as categorias</option>
           <option value="papelaria">Papelaria</option>
           <option value="bomboniere">Bomboniere</option>
@@ -54,33 +54,26 @@ function Estoque() {
       {erro && <p>{erro}</p>}
 
       {!carregando && !erro && (
-        <table>
-          <thead>
-            <tr>
-              <th>Produto</th>
-              <th>Categoria</th>
-              <th>Quantidade</th>
-            </tr>
-          </thead>
-          <tbody>
-            {produtosFiltrados.length === 0 ? (
-              <tr>
-                <td colSpan="3">Nenhum produto encontrado</td>
-              </tr>
-            ) : (
-              produtosFiltrados.map((p) => (
-                <tr key={p.id}>
-                  <td>{p.nome}</td>
-                  <td>{p.categoria}</td>
-                  <td>{p.quantidade}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      )}
+        <div className="estoque-lista">
+          <div className="estoque-cabecalho">
+            <span>Produto</span>
+            <span>Categoria</span>
+            <span>Quantidade</span>
+          </div>
 
-      <Link to="/">Voltar</Link>
+          {produtosFiltrados.length === 0 ? (
+            <div className="estoque-vazio">Nenhum produto encontrado</div>
+          ) : (
+            produtosFiltrados.map((p) => (
+              <div className="estoque-linha" key={p.id}>
+                <span>{p.nome}</span>
+                <span>{p.categoria}</span>
+                <span>{p.quantidade}</span>
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </section>
   )
 }
