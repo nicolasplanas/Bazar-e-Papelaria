@@ -1,11 +1,8 @@
-from flask import Flask, jsonify
-from flask_cors import CORS
-import requests
+from flask    import Blueprint, jsonify
 from datetime import datetime
-import pytz
+import requests
 
-app = Flask(__name__)
-CORS(app)
+previsao_bp = Blueprint("previsao", __name__)
 
 # Coordenadas de Presidente Prudente, SP
 LATITUDE  = -22.1256
@@ -49,7 +46,7 @@ def get_day_name(date_string):
 
     return days[date.weekday()]
 
-@app.route('/api/weather', methods=['GET'])
+@previsao_bp.route('/api/weather', methods=['GET'])
 def get_weather():
     """
     Retorna previsão do tempo para os próximos 7 dias
@@ -118,10 +115,7 @@ def get_weather():
             "message": f"Erro interno: {str(e)}"
         }), 500
 
-@app.route('/api/health', methods=['GET'])
+@previsao_bp.route('/api/health', methods=['GET'])
 def health():
     """Health check"""
     return jsonify({"status": "ok"})
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
