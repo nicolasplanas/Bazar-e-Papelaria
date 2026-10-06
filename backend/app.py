@@ -12,7 +12,7 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
-    cors.init_app(app)
+    cors.init_app(app, origins=os.environ.get("FRONTEND_URL", "*"))
 
     register_routes(app)
 
