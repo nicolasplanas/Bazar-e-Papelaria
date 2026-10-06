@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import API_URL from './api'
 import '../WeatherForecast.css';
 
 export function WeatherForecast() {
@@ -13,7 +14,7 @@ export function WeatherForecast() {
   const fetchWeather = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/weather');
+      const response = await fetch(`${API_URL}/api/weather`);
       
       if (!response.ok) {
         throw new Error(`Erro HTTP: ${response.status}`);

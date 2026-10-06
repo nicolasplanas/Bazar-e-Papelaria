@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { API_URL } from './api'
 
 function Estoque() {
   const [produtos, setProdutos] = useState([])
@@ -11,7 +11,7 @@ function Estoque() {
   useEffect(() => {
     const carregar = async () => {
       try {
-        const res = await fetch('http://localhost:5000/produtos')
+        const res = await fetch(`${API_URL}/estoque`)
         if (!res.ok) throw new Error()
         setProdutos(await res.json())
       } catch {

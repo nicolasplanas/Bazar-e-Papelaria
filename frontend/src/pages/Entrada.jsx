@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { API_URL } from './api'
 
 function Entrada() {
 
@@ -14,7 +15,7 @@ function Entrada() {
 
     try {
 
-      const res = await fetch('http://localhost:5000/entrada', {
+      const res = await fetch(`${API_URL}/entrada`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, quantidade, categoria }),
