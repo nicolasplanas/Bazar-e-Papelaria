@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import API_URL from '../api'
+import { API_URL } from '../api'
 import '../WeatherForecast.css';
 
 export function WeatherForecast() {
