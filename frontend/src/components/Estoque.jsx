@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { API_URL } from './api'
+import { API_URL } from '../api'
 
 function Estoque() {
   const [produtos, setProdutos] = useState([])
