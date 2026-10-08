@@ -11,7 +11,7 @@ function Estoque() {
   useEffect(() => {
     const carregar = async () => {
       try {
-        const res = await fetch(`${API_URL}/estoque`)
+        const res = await fetch(`${API_URL}/produtos`)
         if (!res.ok) throw new Error()
         setProdutos(await res.json())
       } catch {
