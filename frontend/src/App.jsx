@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Entrada from './pages/Entrada'
 import Saida from './pages/Saida'
+import Logs from './pages/Logs'
 import logo from './assets/logo.png'
 import Bazarlogo from './assets/Bazarlogo.png'
 import './App.css'
@@ -68,6 +69,8 @@ function App() {
         <Route path="/Entrada" element={<Entrada />} />
 
         <Route path="/Saida" element={<Saida />} />
+
+        <Route path="/Logs" element={<Logs />} />
 
 
       </Routes>

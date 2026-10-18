@@ -7,5 +7,5 @@ movimentacoes_bp = Blueprint("movimentacoes", __name__)
 @movimentacoes_bp.route("/movimentacoes", methods=["GET"])
 def listar_movimentacoes():
     
-    movs = Movimentacao.query.order_by(Movimentacao.data.desc()).all()
+    movs = Movimentacao.query.order_by(Movimentacao.data.desc(), Movimentacao.id.desc()).all()
     return jsonify([m.to_dict() for m in movs])

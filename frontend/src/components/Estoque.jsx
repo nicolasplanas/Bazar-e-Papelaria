@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { API_URL } from '../api'
 
 function Estoque() {
@@ -42,7 +43,7 @@ function Estoque() {
         />
 
         <select className="estoque-select" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-          <option value="">Todas as categorias</option>
+          <option value="">Todos</option>
           <option value="papelaria">Papelaria</option>
           <option value="bomboniere">Bomboniere</option>
           <option value="sorvetes">Sorvetes</option>
@@ -74,6 +75,11 @@ function Estoque() {
           )}
         </div>
       )}
+
+      <Link to="/logs" className="botao-logs" translate="no">
+        Movimentações
+      </Link>
+
     </section>
   )
 }

@@ -98,7 +98,9 @@
 #docs {
   border-right: 1px solid var(--border);
 
-  @media (max-width: 1024px) {
+  @media (width: 600px) {
+    display: flex;
+    align-items: center;
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
@@ -107,9 +109,9 @@
 #estoque {
   border-right: 1px solid var(--border);
 
-  @media (max-width: 1024px) {
+  @media (width: 600px) {
     display: flex;
-    align-items:self-start;
+    align-items: center;
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
@@ -129,11 +131,12 @@
 
 .estoque-busca,
 .estoque-select {
+  width: 150px;
   padding: 10px 14px;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #9ca3af;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);;
+  background: #343644;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -186,6 +189,70 @@
 
 .estoque-vazio {
   padding: 16px;
+  text-align: center;
+}
+
+.logs-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.logs-busca {
+  flex: 1 1 200px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.logs-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.logs-linha {
+  display: grid;
+  grid-template-columns: 1.6fr 1.5fr 1fr 0.6fr;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #1e1f27;
+  font-size: 0.9rem;
+}
+
+.logs-cabecalho {
+  font-weight: bold;
+  background: #343644;
+}
+
+.logs-vazio {
+  padding: 16px;
+  text-align: center;
+}
+
+.tag-entrada,
+.tag-saida {
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.tag-entrada { background: #2e7d32; color: #fff; }
+.tag-saida   { background: #c62828; color: #fff; }
+
+.botao-logs,
+.botao-voltar {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 16px;
+  width: fit-content;
+  border-radius: 8px;
+  background: #343644;
+  color: #fff;
+  text-decoration: none;
   text-align: center;
 }
 
@@ -317,7 +384,9 @@
 }
 
 .btn-group {
-  display: flex;
+  display: contents;
+  align-items: center;
+  flex-direction: row;
   gap: 16px;
 }
 .social-section {
