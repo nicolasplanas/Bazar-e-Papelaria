@@ -4,8 +4,6 @@ import { API_URL } from '../api'
 
 function Estoque() {
   const [produtos, setProdutos] = useState([])
-  const [categoria, setCategoria] = useState('')
-  const [busca, setBusca] = useState('')
   const [erro, setErro] = useState('')
   const [carregando, setCarregando] = useState(true)
 
@@ -24,32 +22,14 @@ function Estoque() {
     carregar()
   }, [])
 
-  const produtosFiltrados = produtos.filter(
-    (p) =>
-      (categoria === '' || p.categoria === categoria) &&
-      p.nome.toLowerCase().includes(busca.toLowerCase())
-  )
+  // copia a lista antes de ordenar e pega só os 5 maiores
+  const principais = [...produtos]
+    .sort((a, b) => b.quantidade - a.quantidade || a.nome.localeCompare(b.nome))
+    .slice(0, 5)
 
   return (
     <section id="estoque-layout">
-      <h1>Estoque Atual</h1>
-
-      <div className="estoque-filtros">
-        <input className="estoque-busca"
-          type="text"
-          placeholder="Buscar produto..."
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-        />
-
-        <select className="estoque-select" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-          <option value="">Todos</option>
-          <option value="papelaria">Papelaria</option>
-          <option value="bomboniere">Bomboniere</option>
-          <option value="sorvetes">Sorvetes</option>
-          <option value="presentes">Presentes</option>
-        </select>
-      </div>
+      <h1>Principais Itens</h1>
 
       {carregando && <p>Carregando...</p>}
       {erro && <p>{erro}</p>}
@@ -62,10 +42,10 @@ function Estoque() {
             <span>Quantidade</span>
           </div>
 
-          {produtosFiltrados.length === 0 ? (
-            <div className="estoque-vazio">Nenhum produto encontrado</div>
+          {principais.length === 0 ? (
+            <div className="estoque-vazio">Nenhum produto cadastrado</div>
           ) : (
-            produtosFiltrados.map((p) => (
+            principais.map((p) => (
               <div className="estoque-linha" key={p.id}>
                 <span>{p.nome}</span>
                 <span>{p.categoria}</span>
@@ -75,6 +55,10 @@ function Estoque() {
           )}
         </div>
       )}
+
+      <Link to="/estoque" className="botao-logs" translate="no">
+        Estoque completo
+      </Link>
 
       <Link to="/logs" className="botao-logs" translate="no">
         Movimentações
