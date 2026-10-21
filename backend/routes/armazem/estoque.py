@@ -1,11 +1,13 @@
-from flask      import Blueprint, request, jsonify
-from models     import Produto, Movimentacao
-from extensions import db
+from flask       import Blueprint, request, jsonify
+from models      import Produto, Movimentacao
+from extensions  import db
+from routes.auth import login_required
 
 estoque_bp = Blueprint("estoque", __name__)
 
 
 @estoque_bp.route("/entrada", methods=["POST"])
+@login_required
 def registrar_entrada():
 
     dados     = request.get_json()
@@ -43,6 +45,7 @@ def registrar_entrada():
 
 
 @estoque_bp.route("/saida", methods=["POST"])
+@login_required
 def registrar_saida():
 
     dados = request.get_json()

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { API_URL } from '../api'
 
 function formatarData(iso) {
   return new Date(iso).toLocaleString('pt-BR', {
@@ -22,7 +21,7 @@ function Logs() {
   useEffect(() => {
     const carregar = async () => {
       try {
-        const res = await fetch(`${API_URL}/movimentacoes`)
+        const res = await apiFetch('/movimentacoes')
         if (!res.ok) throw new Error()
         setMovimentacoes(await res.json())
       } catch {

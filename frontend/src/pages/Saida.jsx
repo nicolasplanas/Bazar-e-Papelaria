@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { API_URL } from '../api'
 
 function Saida() {
 
@@ -14,7 +13,7 @@ function Saida() {
 
     try {
 
-      const res = await fetch(`${API_URL}/saida`, {
+      const res = await apiFetch('/saida', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, quantidade }),

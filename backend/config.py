@@ -23,5 +23,8 @@ class Config:
         
         uri = uri.replace("postgresql://", "postgresql+psycopg2://", 1)
 
+    SECRET_KEY                     = os.environ.get("SECRET_KEY", "chave-local-so-para-desenvolvimento")
+    ADMIN_USER                     = os.environ.get("ADMIN_USER", "admin")
+    ADMIN_PASSWORD_HASH            = os.environ.get("ADMIN_PASSWORD_HASH")
     SQLALCHEMY_DATABASE_URI        = uri
     SQLALCHEMY_TRACK_MODIFICATIONS = False
