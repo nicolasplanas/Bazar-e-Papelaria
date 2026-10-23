@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { apiFetch } from '../Auth'
 
 function Estoque() {
   const [produtos, setProdutos] = useState([])
