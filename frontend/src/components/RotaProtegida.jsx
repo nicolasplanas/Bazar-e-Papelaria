@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { getToken, sessaoValida } from '../Auth'
+import BotaoSair from './BotaoSair'
 
 function RotaProtegida({ children }) {
   const [estado, setEstado] = useState(() => (getToken() ? 'verificando' : 'negado'))
@@ -19,7 +20,14 @@ function RotaProtegida({ children }) {
 
   if (estado === 'verificando') return <p>Verificando sessão...</p>
   if (estado === 'negado') return <Navigate to="/login" replace />
-  return children
+  
+  return ( 
+    <>
+      <BotaoSair />
+      {children}
+    </>
+  )
+    
 }
 
 export default RotaProtegida
