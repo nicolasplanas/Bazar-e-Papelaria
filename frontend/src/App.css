@@ -185,6 +185,15 @@
   flex: 1 1 200px;
   min-width: 0;
   box-sizing: border-box;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.estoque-busca:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .estoque-select {
@@ -275,6 +284,15 @@
   flex: 1 1 200px;
   min-width: 0;
   box-sizing: border-box;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.logs-busca:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .logs-lista {
@@ -286,7 +304,7 @@
 .logs-cabecalho,
 .logs-linha {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.5fr) minmax(0, 1fr) max-content;
+  grid-template-columns: 1fr 1fr 0.5fr 1fr;
   align-items: center;
   gap: 8px;
   padding: 12px;
