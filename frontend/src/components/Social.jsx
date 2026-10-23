@@ -1,47 +1,25 @@
-import { FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa'
+import { FaInstagram } from 'react-icons/fa'
 
 function Social() {
-
-    return  (
-        <>
-            <h2>Redes Sociais</h2>
-            <ul>
-                <li>
-
-                    <a href="https://www.instagram.com/bazarwindow?exln=MTJ3Z25nNTYydTZzcw=="
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram (abre em nova aba)"
-                    >
-                    <FaInstagram className="button-icon" aria-hidden="true" />
-                    Instagram
-                    </a>
-                </li>
-                <li>
-
-                    <a href="https://www.facebook.com/sua_empresa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook (abre em nova aba)"
-                    >
-                    <FaFacebook className="button-icon" aria-hidden="true" />
-                    Facebook
-                    </a>
-                </li>
-                <li>
-
-                    <a href="https://wa.me/sua_empresa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="WhatsApp (abre em nova aba)"
-                    >
-                    <FaWhatsapp className="button-icon" aria-hidden="true" />
-                    WhatsApp
-                    </a>
-                </li>
-            </ul>
-        </>
-    )
+  return (
+    <div className="redes">
+      <h2>Rede Social</h2>
+      <ul className="redes-lista">
+        <li>
+          <a
+            href="https://www.instagram.com/bazarwindow?exln=MTJ3Z25nNTYydTZzcw=="
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram (abre em nova aba)"
+            className="botao-rede"
+          >
+            <FaInstagram className="icone-rede" aria-hidden="true" />
+            Instagram
+          </a>
+        </li>
+      </ul>
+    </div>
+  )
 }
 
-export default Social;
+export default Social
