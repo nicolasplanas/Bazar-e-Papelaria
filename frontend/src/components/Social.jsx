@@ -8,7 +8,7 @@ function Social() {
             <ul>
                 <li>
 
-                    <a href="https://www.instagram.com/sua_empresa"
+                    <a href="https://www.instagram.com/bazarwindow?exln=MTJ3Z25nNTYydTZzcw=="
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram (abre em nova aba)"
