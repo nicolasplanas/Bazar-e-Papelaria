@@ -81,7 +81,7 @@ function Entrada() {
           </select>
         </div>
 
-        <div>
+        <div className="form-acoes">
           <button type="submit">Registrar Entrada</button>
           <Link to="/">Voltar</Link>
         </div>

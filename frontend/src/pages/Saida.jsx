@@ -63,7 +63,7 @@ function Saida() {
           />
         </div>
 
-        <div>
+        <div className="form-acoes">
           <button type="submit">Registrar Saída</button>
           <Link to="/">Voltar</Link>
         </div>
