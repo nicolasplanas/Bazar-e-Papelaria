@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { sair } from '../Auth'
+import { sair } from '../lib/auth'
 
 function BotaoSair() {
   const navigate = useNavigate()

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { getToken, sessaoValida } from '../Auth'
+import { getToken, sessaoValida } from '../lib/auth'
 import BotaoSair from './BotaoSair'
 
 function RotaProtegida({ children }) {

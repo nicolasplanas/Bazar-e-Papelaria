@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { API_URL } from './api'
-import { salvarToken } from './Auth'
+import { API_URL } from '../lib/api'
+import { salvarToken } from '../lib/auth'
 
 function Login() {
   const navigate = useNavigate()

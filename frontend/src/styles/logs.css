@@ -1,0 +1,77 @@
+.logs-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.logs-busca {
+  flex: 1 1 200px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.logs-busca:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.logs-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.logs-cabecalho,
+.logs-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.logs-linha {
+  background: #1e1f27;
+}
+
+.logs-cabecalho {
+  font-weight: bold;
+  background: #343644;
+}
+
+.logs-vazio {
+  padding: 16px;
+  text-align: center;
+}
+
+.tag-entrada,
+.tag-saida {
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.tag-entrada {
+  background: #2e7d32;
+}
+
+.tag-saida {
+  background: #c62828;
+}
+
+@media (max-width: 380px) {
+  .logs-cabecalho,
+  .logs-linha {
+    gap: 8px;
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}

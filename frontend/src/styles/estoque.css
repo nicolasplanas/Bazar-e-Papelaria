@@ -1,0 +1,122 @@
+/* página completa (/estoque) */
+#estoque-completo {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* tela inicial (top 5) */
+#estoque-layout {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#estoque-layout h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.estoque-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.estoque-busca {
+  flex: 1 1 200px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.estoque-busca:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.estoque-busca::placeholder {
+  color: #999;
+}
+
+.estoque-select {
+  flex: 0 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.estoque-busca:focus,
+.estoque-select:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+.estoque-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* cabeçalho e linhas: mesma grade, mesmo alinhamento por coluna */
+.estoque-cabecalho,
+.estoque-linha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.estoque-linha {
+  background: #1e1f27;
+}
+
+.estoque-cabecalho {
+  font-weight: bold;
+  background: #343644;
+}
+
+.estoque-cabecalho > span:nth-child(1),
+.estoque-linha > span:nth-child(1) {
+  text-align: left;
+}
+
+.estoque-cabecalho > span:nth-child(2),
+.estoque-linha > span:nth-child(2) {
+  text-align: center;
+}
+
+.estoque-cabecalho > span:nth-child(3),
+.estoque-linha > span:nth-child(3) {
+  text-align: right;
+}
+
+.estoque-linha > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.estoque-vazio {
+  padding: 16px;
+  text-align: center;
+}
+
+@media (max-width: 380px) {
+  .estoque-cabecalho,
+  .estoque-linha {
+    gap: 8px;
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}

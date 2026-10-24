@@ -1,0 +1,90 @@
+.btn {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.btn-entrada {
+  color: #ffffff;
+  background: #2e7d32;
+  margin: 5px;
+}
+
+.btn-entrada:hover {
+  background: #276a2b;
+}
+
+.btn-saida {
+  color: #ffffff;
+  background: #c62828;
+  margin: 5px;
+}
+
+.btn-saida:hover {
+  background: #ab2222;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  align-items: initial;
+  width: 170px;
+  padding-top: 10px;
+}
+
+/* botões de link (Movimentações, Ver estoque completo, Voltar) */
+.botao-logs,
+.botao-voltar {
+  display: block;
+  width: fit-content;
+  margin: 16px auto 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #343644;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* botão sair fixo no canto superior direito */
+.botao-sair {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #c62828;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.botao-sair:hover {
+  background: #ab2222;
+  transform: translateY(-1px);
+}
+
+.botao-sair:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}

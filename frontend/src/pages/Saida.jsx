@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { apiFetch } from '../Auth'
+import { apiFetch } from '../lib/auth'
 
 function Saida() {
 
