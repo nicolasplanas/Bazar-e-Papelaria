@@ -1,36 +1,44 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { apiFetch } from '../lib/auth'
+import SeletorProduto from '../components/SeletorProduto'
 
 function Saida() {
-
-  const [nome, setNome] = useState('')
+  const [produtos, setProdutos] = useState([])
+  const [produtoId, setProdutoId] = useState('')
   const [quantidade, setQuantidade] = useState('')
   const [mensagem, setMensagem] = useState('')
 
+  useEffect(() => {
+    const carregar = async () => {
+      try {
+        const res = await apiFetch('/produtos')
+        if (!res.ok) throw new Error()
+        setProdutos(await res.json())
+      } catch {
+        setMensagem('Não foi possível carregar os produtos')
+      }
+    }
+    carregar()
+  }, [])
+
   const handleSubmit = async (e) => {
-    
-    e.preventDefault() // evita recarregar a página
+    e.preventDefault()
 
     try {
-
       const res = await apiFetch('/saida', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, quantidade }),
+        body: JSON.stringify({ produto_id: produtoId, quantidade }),
       })
-
       const dados = await res.json()
 
       if (!res.ok) {
-
         setMensagem(dados.erro)
         return
-
       }
 
       setMensagem(`Saída registrada! Estoque de ${dados.nome}: ${dados.quantidade}`)
-      setNome('')
+      setProdutoId('')
       setQuantidade('')
     } catch {
       setMensagem('Não foi possível conectar ao servidor')
@@ -40,14 +48,14 @@ function Saida() {
   return (
     <section id="saida">
       <h1>Saída de Produto</h1>
+
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="nome">Produto</label>
-          <input
-            id="nome"
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
+          <label htmlFor="produto">Produto</label>
+          <SeletorProduto
+            produtos={produtos}
+            valor={produtoId}
+            onChange={setProdutoId}
           />
         </div>
 

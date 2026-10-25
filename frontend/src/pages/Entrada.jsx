@@ -1,39 +1,45 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { apiFetch } from '../lib/auth'
+import SeletorProduto from '../components/SeletorProduto'
 
 function Entrada() {
-
-  const [nome, setNome] = useState('')
+  const [produtos, setProdutos] = useState([])
+  const [produtoId, setProdutoId] = useState('')
   const [quantidade, setQuantidade] = useState('')
-  const [categoria, setCategoria] = useState('')
   const [mensagem, setMensagem] = useState('')
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    const carregar = async () => {
+      try {
+        const res = await apiFetch('/produtos')
+        if (!res.ok) throw new Error()
+        setProdutos(await res.json())
+      } catch {
+        setMensagem('Não foi possível carregar os produtos')
+      }
+    }
+    carregar()
+  }, [])
 
-    e.preventDefault() // evita recarregar a página
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
     try {
-
       const res = await apiFetch('/entrada', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, quantidade, categoria }),
+        body: JSON.stringify({ produto_id: produtoId, quantidade }),
       })
-
       const dados = await res.json()
 
       if (!res.ok) {
-
         setMensagem(dados.erro)
         return
-        
       }
 
       setMensagem(`Entrada registrada! Estoque de ${dados.nome}: ${dados.quantidade}`)
-      setNome('')
+      setProdutoId('')
       setQuantidade('')
-      setCategoria('')
     } catch {
       setMensagem('Não foi possível conectar ao servidor')
     }
@@ -45,12 +51,11 @@ function Entrada() {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="nome">Produto</label>
-          <input
-            id="nome"
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
+          <label htmlFor="produto">Produto</label>
+          <SeletorProduto
+            produtos={produtos}
+            valor={produtoId}
+            onChange={setProdutoId}
           />
         </div>
 
@@ -64,21 +69,6 @@ function Entrada() {
             value={quantidade}
             onChange={(e) => setQuantidade(e.target.value)}
           />
-        </div>
-
-        <div>
-          <label htmlFor="categoria">Categoria</label>
-          <select
-            id="categoria"
-            value={categoria}
-            onChange={(e) => setCategoria(e.target.value)}
-          >
-            <option value="">Selecione...</option>
-            <option value="papelaria">Papelaria</option>
-            <option value="bomboniere">Bomboniere</option>
-            <option value="sorvetes">Sorvetes</option>
-            <option value="presentes">Presentes</option>
-          </select>
         </div>
 
         <div className="form-acoes">

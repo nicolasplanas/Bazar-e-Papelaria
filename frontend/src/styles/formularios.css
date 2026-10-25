@@ -1,6 +1,10 @@
-/* telas de entrada e saída */
+/* ============================================================
+   FORMULÁRIOS: entrada, saída e registro
+   ============================================================ */
+
 #entrada,
-#saida {
+#saida,
+#registro {
   width: 100%;
   max-width: 420px;
   margin: 0 auto;
@@ -10,13 +14,15 @@
 }
 
 #entrada h1,
-#saida h1 {
+#saida h1,
+#registro h1 {
   font-size: 2rem;
   margin-bottom: 24px;
 }
 
 #entrada form,
-#saida form {
+#saida form,
+#registro form {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -27,7 +33,8 @@
 }
 
 #entrada form > div,
-#saida form > div {
+#saida form > div,
+#registro form > div {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -42,14 +49,19 @@
 }
 
 #entrada label,
-#saida label {
+#saida label,
+#registro label {
   font-size: 0.9rem;
   color: #c9cbd6;
 }
 
+/* campos: input, select e textarea compartilham o mesmo visual */
 #entrada input,
 #entrada select,
-#saida input {
+#saida input,
+#registro input,
+#registro select,
+#registro textarea {
   width: 100%;
   box-sizing: border-box;
   padding: 10px 14px;
@@ -57,24 +69,35 @@
   border: 1px solid #444;
   background: #2a2b35;
   color: #fff;
+  font-family: inherit;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+#registro textarea {
+  resize: vertical;
+}
+
 #entrada input:focus,
 #entrada select:focus,
-#saida input:focus {
+#saida input:focus,
+#registro input:focus,
+#registro select:focus,
+#registro textarea:focus {
   border-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
 }
 
-#entrada select {
+#entrada select,
+#registro select {
   cursor: pointer;
 }
 
+/* botões de envio: cor muda conforme a tela */
 #entrada button[type='submit'],
-#saida button[type='submit'] {
+#saida button[type='submit'],
+#registro button[type='submit'] {
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -85,13 +108,34 @@
   transition: background 0.2s, transform 0.15s;
 }
 
-#entrada button[type='submit'] {
+#entrada button[type='submit'],
+#registro button[type='submit'] {
   background: #2e7d32;
 }
 
-#entrada button[type='submit']:hover {
+#entrada button[type='submit']:hover,
+#registro button[type='submit']:hover {
   background: #276a2b;
   transform: translateY(-1px);
+}
+
+#saida select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #2a2b35;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+}
+
+#saida select:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
 }
 
 #saida button[type='submit'] {
@@ -103,8 +147,72 @@
   transform: translateY(-1px);
 }
 
+.seletor-produto {
+  position: relative;
+}
+
+.seletor-lista {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 4px 0 0;
+  padding: 4px;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #343644;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.seletor-lista button {
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.seletor-lista button:hover {
+  background: #1e1f27;
+}
+
+.seletor-vazio {
+  padding: 10px 12px;
+  color: #9a9cad;
+}
+
+.seletor-escolhido {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #2a2b35;
+  color: #fff;
+}
+
+.seletor-escolhido button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #343644;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* link "Voltar" */
 #entrada a,
-#saida a {
+#saida a,
+#registro a {
   display: inline-block;
   padding: 12px 20px;
   border-radius: 8px;
@@ -115,8 +223,10 @@
   text-align: center;
 }
 
+/* mensagem de retorno do servidor */
 #entrada > p,
-#saida > p {
+#saida > p,
+#registro > p {
   margin-top: 16px;
   padding: 12px;
   border-radius: 8px;
@@ -126,7 +236,8 @@
 
 @media (max-width: 380px) {
   #entrada form,
-  #saida form {
+  #saida form,
+  #registro form {
     padding: 16px;
   }
 }

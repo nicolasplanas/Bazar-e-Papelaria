@@ -3,6 +3,7 @@ import RotaProtegida from './components/RotaProtegida'
 import Login from './pages/Login'
 import Entrada from './pages/Entrada'
 import Saida from './pages/Saida'
+import Registro from './pages/Registro'
 import Logs from './pages/Logs'
 import EstoqueCompleto from './pages/EstoqueCompleto'
 import logo from './assets/logo.png'
@@ -33,6 +34,7 @@ function Home() {
           <div className="btn-group">
             <Link to="/entrada" className="btn btn-entrada">Entrada</Link>
             <Link to="/saida" className="btn btn-saida">Saída</Link>
+            <Link to="/registro" className="btn btn-registro">Registro</Link>
           </div>
         </div>
 
@@ -63,6 +65,7 @@ function App() {
         <Route path="/" element={<RotaProtegida><Home /></RotaProtegida>} />
         <Route path="/entrada" element={<RotaProtegida><Entrada /></RotaProtegida>} />
         <Route path="/saida" element={<RotaProtegida><Saida /></RotaProtegida>} />
+        <Route path="/registro" element={<RotaProtegida><Registro /></RotaProtegida>} />
         <Route path="/estoque" element={<RotaProtegida><EstoqueCompleto /></RotaProtegida>} />
         <Route path="/logs" element={<RotaProtegida><Logs /></RotaProtegida>} />
       </Routes>
