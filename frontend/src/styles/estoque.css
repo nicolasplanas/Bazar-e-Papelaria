@@ -69,13 +69,20 @@
 .estoque-cabecalho,
 .estoque-linha {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   gap: 12px;
   padding: 12px;
   border-radius: 8px;
   font-size: 0.95rem;
   text-align: left;
+}
+
+.estoque-cabecalho {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.estoque-linha {
+    grid-template-columns: 0.7fr 0.5fr 0.52fr 0.14fr
 }
 
 .estoque-linha {
