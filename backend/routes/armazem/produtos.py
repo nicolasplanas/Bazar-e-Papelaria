@@ -1,6 +1,6 @@
 from flask          import Blueprint, request, jsonify
 from extensions     import db
-from models         import Produto
+from models         import Produto, Movimentacao
 from routes.auth    import login_required
 from sqlalchemy.exc import IntegrityError
 
@@ -80,3 +80,49 @@ def proximo_codigo(categoria):
             pass  # código fora do padrão é ignorado
 
     return f"{prefixo}-{maior + 1:05d}"
+
+@produtos_bp.route("/produtos/<int:produto_id>", methods=["PUT"])
+@login_required
+def editar_produto(produto_id):
+    produto = db.session.get(Produto, produto_id)
+    if not produto:
+        return jsonify({"erro": "Produto não encontrado"}), 404
+
+    dados = request.get_json(silent=True) or {}
+    nome = (dados.get("nome") or "").strip()
+    descricao = (dados.get("descricao") or "").strip() or None
+    categoria = (dados.get("categoria") or "").strip()
+
+    if not nome or not categoria:
+        return jsonify({"erro": "Nome e categoria são obrigatórios"}), 400
+    if categoria not in PREFIXOS:
+        return jsonify({"erro": "Categoria inválida"}), 400
+
+    outro = Produto.query.filter(Produto.nome == nome, Produto.id != produto_id).first()
+    if outro:
+        return jsonify({"erro": "Já existe outro produto com esse nome"}), 409
+
+    if categoria != produto.categoria:
+        # categoria nova: o item recebe o próximo código dessa categoria
+        produto.codigo = proximo_codigo(categoria)
+
+    produto.nome = nome
+    produto.descricao = descricao
+    produto.categoria = categoria  # o código (codigo) permanece o mesmo
+    db.session.commit()
+    return jsonify(produto.to_dict()), 200
+
+
+@produtos_bp.route("/produtos/<int:produto_id>", methods=["DELETE"])
+@login_required
+def excluir_produto(produto_id):
+    produto = db.session.get(Produto, produto_id)
+    if not produto:
+        return jsonify({"erro": "Produto não encontrado"}), 404
+
+    if Movimentacao.query.filter_by(produto_id=produto_id).first():
+        return jsonify({"erro": "Este produto já tem movimentações e não pode ser excluído"}), 409
+
+    db.session.delete(produto)
+    db.session.commit()
+    return jsonify({"ok": True}), 200

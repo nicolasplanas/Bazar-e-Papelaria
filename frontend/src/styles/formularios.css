@@ -209,6 +209,98 @@
   cursor: pointer;
 }
 
+/* lista de produtos na tela de registro */
+.registro-titulo-lista {
+  margin-top: 32px;
+  font-size: 1.5rem;
+}
+
+.registro-lista {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.registro-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #1e1f27;
+}
+
+.registro-item strong {
+  display: block;
+}
+
+.registro-item span,
+.registro-vazio,
+.registro-dica {
+  font-size: 0.85rem;
+  color: #9a9cad;
+}
+
+.registro-item-acoes {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.registro-item-acoes button,
+.registro-cancelar {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #343644;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.registro-excluir {
+  background: #c62828 !important;
+}
+
+.registro-dica {
+  margin: 0;
+  text-align: center;
+}
+
+/* paginação da lista de produtos */
+.paginacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.paginacao button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #343644;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.paginacao button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.paginacao span {
+  font-size: 0.9rem;
+  color: #9a9cad;
+}
+
 /* link "Voltar" */
 #entrada a,
 #saida a,
