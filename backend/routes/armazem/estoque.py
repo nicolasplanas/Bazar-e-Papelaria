@@ -6,75 +6,52 @@ from routes.auth import login_required
 estoque_bp = Blueprint("estoque", __name__)
 
 
+def _ler_movimentacao():
+    """Lê produto_id e quantidade do JSON. Retorna (produto_id, quantidade) ou None."""
+    dados = request.get_json(silent=True) or {}
+    try:
+        produto_id = int(dados.get("produto_id"))
+        quantidade = int(dados.get("quantidade"))
+    except (TypeError, ValueError):
+        return None
+    if quantidade <= 0:
+        return None
+    return produto_id, quantidade
+
+
 @estoque_bp.route("/entrada", methods=["POST"])
 @login_required
 def registrar_entrada():
+    leitura = _ler_movimentacao()
+    if leitura is None:
+        return jsonify({"erro": "Selecione um produto e informe uma quantidade válida"}), 400
 
-    dados     = request.get_json()
-    nome      = (dados.get("nome") or "").strip()
-    categoria = dados.get("categoria")
+    produto_id, quantidade = leitura
+    produto = db.session.get(Produto, produto_id)
+    if not produto:
+        return jsonify({"erro": "Produto não encontrado"}), 404
 
-    try:
-
-        quantidade = int(dados.get("quantidade"))
-
-    except (TypeError, ValueError):
-
-        return jsonify({"erro": "Quantidade inválida"}), 400
-
-    if not nome or not categoria or quantidade <= 0:
-
-        return jsonify({"erro": "Preencha todos os campos corretamente"}), 400
-
-    produto = Produto.query.filter_by(nome=nome).first()
-
-    if produto:
-
-        produto.quantidade += quantidade
-
-    else:
-
-        produto = Produto(nome=nome, categoria=categoria, quantidade=quantidade)
-        db.session.add(produto)
-        db.session.flush()
-
+    produto.quantidade += quantidade
     db.session.add(Movimentacao(produto_id=produto.id, tipo="entrada", quantidade=quantidade))
     db.session.commit()
-
     return jsonify(produto.to_dict()), 201
 
 
 @estoque_bp.route("/saida", methods=["POST"])
 @login_required
 def registrar_saida():
+    leitura = _ler_movimentacao()
+    if leitura is None:
+        return jsonify({"erro": "Selecione um produto e informe uma quantidade válida"}), 400
 
-    dados = request.get_json()
-    nome  = (dados.get("nome") or "").strip()
-
-    try:
-
-        quantidade = int(dados.get("quantidade"))
-
-    except (TypeError, ValueError):
-
-        return jsonify({"erro": "Quantidade inválida"}), 400
-
-    if not nome or quantidade <= 0:
-
-        return jsonify({"erro": "Preencha todos os campos corretamente"}), 400
-
-    produto = Produto.query.filter_by(nome=nome).first()
-
+    produto_id, quantidade = leitura
+    produto = db.session.get(Produto, produto_id)
     if not produto:
-
         return jsonify({"erro": "Produto não encontrado"}), 404
-    
     if produto.quantidade < quantidade:
-
         return jsonify({"erro": f"Estoque insuficiente (disponível: {produto.quantidade})"}), 400
 
     produto.quantidade -= quantidade
     db.session.add(Movimentacao(produto_id=produto.id, tipo="saida", quantidade=quantidade))
     db.session.commit()
-
-    return jsonify(produto.to_dict())
+    return jsonify(produto.to_dict()), 200
