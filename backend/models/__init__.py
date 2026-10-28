@@ -1,2 +1,2 @@
-from .produtos     import Produto
+from .produto      import Produto
 from .movimentacao import Movimentacao

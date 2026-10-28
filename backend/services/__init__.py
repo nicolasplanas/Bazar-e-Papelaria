@@ -1,0 +1,1 @@
+# regras de negócio: códigos e movimentações de estoque
