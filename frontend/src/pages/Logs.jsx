@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { apiFetch } from '../lib/auth'
 import Paginacao from '../components/Paginacao'
+import GraficoVendas from '../components/GraficoVendas'
 
 function formatarData(iso) {
   return new Date(iso).toLocaleString('pt-BR', {
@@ -103,7 +104,7 @@ function Logs() {
           <Paginacao pagina={paginaAtual} totalPaginas={totalPaginas} onMudar={setPagina} />
         </div>
       )}
-
+       {!carregando && !erro && <GraficoVendas movimentacoes={movimentacoes} />}
       <Link to="/" className="botao-voltar" translate="no">Voltar</Link>
     </section>
   )
