@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { apiFetch } from '../lib/auth'
+import Paginacao from '../components/Paginacao'
 
 function formatarData(iso) {
   return new Date(iso).toLocaleString('pt-BR', {
@@ -18,6 +19,8 @@ function Logs() {
   const [busca, setBusca] = useState('')
   const [erro, setErro] = useState('')
   const [carregando, setCarregando] = useState(true)
+  const [pagina, setPagina] = useState(0)
+  const POR_PAGINA = 10
 
   useEffect(() => {
     const carregar = async () => {
@@ -40,6 +43,13 @@ function Logs() {
       m.produto.toLowerCase().includes(busca.toLowerCase())
   )
 
+  const totalPaginas = Math.max(1, Math.ceil(filtradas.length / POR_PAGINA))
+  const paginaAtual = Math.min(pagina, totalPaginas - 1)
+  const visiveis = filtradas.slice(
+    paginaAtual * POR_PAGINA,
+    paginaAtual * POR_PAGINA + POR_PAGINA
+  )
+
   return (
     <section id="logs">
       <h1>Movimentações</h1>
@@ -50,13 +60,13 @@ function Logs() {
           type="text"
           placeholder="Buscar produto..."
           value={busca}
-          onChange={(e) => setBusca(e.target.value)}
+          onChange={(e) => { setBusca(e.target.value); setPagina(0) }}
         />
 
         <select
           className="logs-select"
           value={tipo}
-          onChange={(e) => setTipo(e.target.value)}
+          onChange={(e) => { setTipo(e.target.value); setPagina(0) }}
         >
           <option value="">Entradas e saídas</option>
           <option value="entrada">Entradas</option>
@@ -79,7 +89,7 @@ function Logs() {
           {filtradas.length === 0 ? (
             <div className="logs-vazio">Nenhuma movimentação encontrada</div>
           ) : (
-            filtradas.map((m) => (
+            visiveis.map((m) => (
               <div className="logs-linha" key={m.id}>
                 <span>{formatarData(m.data)}</span>
                 <span>{m.produto}</span>
@@ -90,6 +100,7 @@ function Logs() {
               </div>
             ))
           )}
+          <Paginacao pagina={paginaAtual} totalPaginas={totalPaginas} onMudar={setPagina} />
         </div>
       )}
 

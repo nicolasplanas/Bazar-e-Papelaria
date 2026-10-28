@@ -1,5 +1,5 @@
-
 import { useState } from 'react'
+import Paginacao from './Paginacao'
 
 const POR_PAGINA = 5
 
@@ -87,31 +87,11 @@ function ListaProdutos({ produtos, onEditar, onExcluir }) {
         ))}
       </ul>
 
-      {filtrados.length > POR_PAGINA && (
-        <div className="paginacao">
-          <button
-            type="button"
-            onClick={() => setPagina(paginaAtual - 1)}
-            disabled={paginaAtual === 0}
-            aria-label="Página anterior"
-          >
-            ◀
-          </button>
-
-          <span>
-            Página {paginaAtual + 1} de {totalPaginas}
-          </span>
-
-          <button
-            type="button"
-            onClick={() => setPagina(paginaAtual + 1)}
-            disabled={paginaAtual >= totalPaginas - 1}
-            aria-label="Próxima página"
-          >
-            ▶
-          </button>
-        </div>
-      )}
+      <Paginacao
+        pagina={paginaAtual}
+        totalPaginas={totalPaginas}
+        onMudar={setPagina}
+      />
     </>
   )
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { apiFetch } from '../lib/auth'
+import Paginacao from '../components/Paginacao'
 
 function EstoqueCompleto() {
   const [produtos, setProdutos] = useState([])
@@ -8,6 +9,8 @@ function EstoqueCompleto() {
   const [busca, setBusca] = useState('')
   const [erro, setErro] = useState('')
   const [carregando, setCarregando] = useState(true)
+  const [pagina, setPagina] = useState(0)
+  const POR_PAGINA = 10
 
   useEffect(() => {
     const carregar = async () => {
@@ -33,6 +36,13 @@ function EstoqueCompleto() {
     )
     .sort((a, b) => b.quantidade - a.quantidade || a.nome.localeCompare(b.nome))
 
+  const totalPaginas = Math.max(1, Math.ceil(produtosFiltrados. length / POR_PAGINA))
+  const paginaAtual = Math.min(pagina, totalPaginas - 1)
+  const visiveis = produtosFiltrados.slice(
+    paginaAtual * POR_PAGINA,
+    paginaAtual * POR_PAGINA + POR_PAGINA
+  )
+
   return (
     <section id="estoque-completo">
       <h1>Estoque Completo</h1>
@@ -43,13 +53,13 @@ function EstoqueCompleto() {
           type="text"
           placeholder="Buscar produto..."
           value={busca}
-          onChange={(e) => setBusca(e.target.value)}
+          onChange={(e) => { setBusca(e.target.value); setPagina(0) }}
         />
 
         <select
           className="estoque-select"
           value={categoria}
-          onChange={(e) => setCategoria(e.target.value)}
+          onChange={(e) => { setCategoria(e.target.value); setPagina(0) }}
         >
           <option value="">Todos</option>
           <option value="papelaria">Papelaria</option>
@@ -73,7 +83,7 @@ function EstoqueCompleto() {
           {produtosFiltrados.length === 0 ? (
             <div className="estoque-vazio">Nenhum produto encontrado</div>
           ) : (
-            produtosFiltrados.map((p) => (
+            visiveis.map((p) => (
               <div className="estoque-linha" key={p.id}>
                 <span>{p.nome}</span>
                 <span>{p.categoria}</span>
@@ -82,7 +92,10 @@ function EstoqueCompleto() {
             ))
           )}
         </div>
-      )}
+
+)}
+
+      <Paginacao pagina={paginaAtual} totalPaginas={totalPaginas} onMudar={setPagina} />
 
       <Link to="/" className="botao-voltar" translate="no">
         Voltar
