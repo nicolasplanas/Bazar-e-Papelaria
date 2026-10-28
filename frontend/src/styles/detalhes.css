@@ -1,0 +1,74 @@
+#detalhes {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.detalhes-card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+  padding: 20px;
+  border-radius: 8px;
+  background: #1e1f27;
+  text-align: left;
+}
+
+.detalhes-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detalhes-campo.largo {
+  grid-column: 1 / -1;
+}
+
+.detalhes-rotulo {
+  font-size: 0.8rem;
+  color: #9a9cad;
+}
+
+.detalhes-valor {
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.detalhes-titulo {
+  margin-top: 32px;
+  font-size: 1.5rem;
+}
+
+.detalhes-movs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detalhes-mov {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 0.6fr;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #1e1f27;
+  font-size: 0.9rem;
+}
+
+.detalhes-erro {
+  padding: 12px;
+  border-radius: 8px;
+  background: #343644;
+  color: #ff6b6b;
+}
+
+@media (max-width: 480px) {
+  .detalhes-card {
+    grid-template-columns: 1fr;
+  }
+}

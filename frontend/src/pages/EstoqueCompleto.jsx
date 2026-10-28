@@ -78,6 +78,7 @@ function EstoqueCompleto() {
             <span>Produto</span>
             <span>Categoria</span>
             <span>Quantidade</span>
+            <span aria-hidden="true"></span>
           </div>
 
           {produtosFiltrados.length === 0 ? (
@@ -88,6 +89,9 @@ function EstoqueCompleto() {
                 <span>{p.nome}</span>
                 <span>{p.categoria}</span>
                 <span>{p.quantidade}</span>
+                <Link to={`/produtos/${p.id}`} className="estoque-detalhes">
+                  Detalhes
+                </Link>
               </div>
             ))
           )}

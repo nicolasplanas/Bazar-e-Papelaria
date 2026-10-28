@@ -64,16 +64,22 @@
 /* cabeçalho e linhas: mesma grade e mesmo padding */
 .estoque-cabecalho,
 .estoque-linha {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr) minmax(0, 1fr);
-  align-items: center;
   gap: 12px;
   padding: 12px 16px;
   border-radius: 8px;
   font-size: 0.95rem;
 }
 
+.estoque-cabecalho {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.5fr) minmax(0, 0.8fr) 53px;
+  align-items: center;
+}
+
 .estoque-linha {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  align-items: center;
   background: #1e1f27;
 }
 
@@ -110,6 +116,16 @@
 .estoque-vazio {
   padding: 16px;
   text-align: center;
+}
+
+.estoque-detalhes {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #343644;
+  color: #fff;
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 @media (max-width: 380px) {

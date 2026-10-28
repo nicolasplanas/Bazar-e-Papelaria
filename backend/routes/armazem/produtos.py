@@ -101,3 +101,22 @@ def excluir_produto(produto_id):
     db.session.delete(produto)
     db.session.commit()
     return jsonify({"ok": True}), 200
+
+@produtos_bp.route("/produtos/<int:produto_id>", methods=["GET"])
+@login_required
+def detalhar_produto(produto_id):
+    produto = db.session.get(Produto, produto_id)
+    if not produto:
+        return jsonify({"erro": "Produto não encontrado"}), 404
+
+    movimentacoes = (
+        Movimentacao.query
+        .filter_by(produto_id=produto_id)
+        .order_by(Movimentacao.data.desc(), Movimentacao.id.desc())
+        .all()
+    )
+
+    return jsonify({
+        "produto": produto.to_dict(),
+        "movimentacoes": [m.to_dict() for m in movimentacoes],
+    })

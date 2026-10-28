@@ -6,6 +6,7 @@ import Saida from './pages/Saida'
 import Registro from './pages/Registro'
 import Logs from './pages/Logs'
 import EstoqueCompleto from './pages/EstoqueCompleto'
+import ProdutoDetalhes from './pages/ProdutoDetalhes'
 import logo from './assets/logo.png'
 import Bazarlogo from './assets/Bazarlogo.png'
 import WeatherForecast from './components/WeatherForecast'
@@ -67,6 +68,7 @@ function App() {
         <Route path="/saida" element={<RotaProtegida><Saida /></RotaProtegida>} />
         <Route path="/registro" element={<RotaProtegida><Registro /></RotaProtegida>} />
         <Route path="/estoque" element={<RotaProtegida><EstoqueCompleto /></RotaProtegida>} />
+        <Route path="/produtos/:id" element={<RotaProtegida><ProdutoDetalhes /></RotaProtegida>} />
         <Route path="/logs" element={<RotaProtegida><Logs /></RotaProtegida>} />
       </Routes>
     </BrowserRouter>
