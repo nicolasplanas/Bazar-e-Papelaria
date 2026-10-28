@@ -1,4 +1,15 @@
 /* layout geral: colunas logo | estoque | previsão */
+:root {
+  color-scheme: dark;
+  background-color: #16171d;
+  color: #f0f0f0;
+}
+
+html,
+body,
+#root {
+  background-color: #16171d;
+}
 
 #center {
   display: flex;
