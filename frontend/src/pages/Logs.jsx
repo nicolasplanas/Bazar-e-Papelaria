@@ -54,9 +54,9 @@ function Logs() {
     <section id="logs">
       <h1>Movimentações</h1>
 
-      <div className="logs-filtros">
+      <div className="estoque-filtros">
         <input
-          className="logs-busca"
+          className="estoque-busca"
           type="text"
           placeholder="Buscar produto..."
           value={busca}
@@ -64,7 +64,7 @@ function Logs() {
         />
 
         <select
-          className="logs-select"
+          className="estoque-select"
           value={tipo}
           onChange={(e) => { setTipo(e.target.value); setPagina(0) }}
         >

@@ -39,7 +39,7 @@ function ListaProdutos({ produtos, onEditar, onExcluir }) {
         <input
           className="estoque-busca"
           type="text"
-          placeholder="Pesquisar por nome ou código..."
+          placeholder="Nome ou código"
           value={busca}
           onChange={(e) => mudarBusca(e.target.value)}
         />

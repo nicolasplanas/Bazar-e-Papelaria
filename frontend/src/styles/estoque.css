@@ -1,4 +1,7 @@
-/* página completa (/estoque) */
+/* ============================================================
+   ESTOQUE COMPLETO (/estoque)
+   ============================================================ */
+
 #estoque-completo {
   width: 100%;
   max-width: 720px;
@@ -7,33 +10,29 @@
   box-sizing: border-box;
 }
 
-/* tela inicial (top 5) */
-#estoque-layout {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-#estoque-layout h1 {
-  text-align: center;
-  font-size: 2rem;
-}
-
+/* filtros */
 .estoque-filtros {
   display: flex;
-  flex-wrap: wrap;
+  align-items: stretch;
   gap: 12px;
   margin-bottom: 16px;
 }
 
-.estoque-busca {
-  flex: 1 1 200px;
-  min-width: 0;
+.estoque-busca,
+.estoque-select {
   box-sizing: border-box;
-  padding: 12px;
+  padding: 12px 14px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  border: 1px solid #444;
+  background: #2a2b35;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.estoque-busca {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .estoque-busca:hover {
@@ -41,23 +40,20 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.estoque-busca::placeholder {
-  color: #999;
-}
-
 .estoque-select {
-  flex: 0 1 auto;
-  min-width: 0;
-  box-sizing: border-box;
+  flex: 0 0 auto;
+  min-width: 140px;
   cursor: pointer;
 }
 
 .estoque-busca:focus,
 .estoque-select:focus {
+  outline: none;
   border-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
 }
 
+/* lista */
 .estoque-lista {
   display: flex;
   flex-direction: column;
@@ -65,24 +61,16 @@
   width: 100%;
 }
 
-/* cabeçalho e linhas: mesma grade, mesmo alinhamento por coluna */
+/* cabeçalho e linhas: mesma grade e mesmo padding */
 .estoque-cabecalho,
 .estoque-linha {
   display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr) minmax(0, 1fr);
   align-items: center;
   gap: 12px;
-  padding: 12px;
+  padding: 12px 16px;
   border-radius: 8px;
   font-size: 0.95rem;
-  text-align: left;
-}
-
-.estoque-cabecalho {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-}
-
-.estoque-linha {
-    grid-template-columns: 0.7fr 0.5fr 0.52fr 0.14fr
 }
 
 .estoque-linha {
@@ -94,24 +82,29 @@
   background: #343644;
 }
 
+.estoque-cabecalho > span,
+.estoque-linha > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
 .estoque-cabecalho > span:nth-child(1),
 .estoque-linha > span:nth-child(1) {
+  justify-self: start;
   text-align: left;
 }
 
 .estoque-cabecalho > span:nth-child(2),
 .estoque-linha > span:nth-child(2) {
+  justify-self: center;
   text-align: center;
 }
 
 .estoque-cabecalho > span:nth-child(3),
 .estoque-linha > span:nth-child(3) {
+  justify-self: end;
   text-align: right;
-}
-
-.estoque-linha > span {
-  min-width: 0;
-  overflow-wrap: anywhere;
 }
 
 .estoque-vazio {

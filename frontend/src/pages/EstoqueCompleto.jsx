@@ -36,7 +36,7 @@ function EstoqueCompleto() {
     )
     .sort((a, b) => b.quantidade - a.quantidade || a.nome.localeCompare(b.nome))
 
-  const totalPaginas = Math.max(1, Math.ceil(produtosFiltrados. length / POR_PAGINA))
+  const totalPaginas = Math.max(1, Math.ceil(produtosFiltrados.length / POR_PAGINA))
   const paginaAtual = Math.min(pagina, totalPaginas - 1)
   const visiveis = produtosFiltrados.slice(
     paginaAtual * POR_PAGINA,

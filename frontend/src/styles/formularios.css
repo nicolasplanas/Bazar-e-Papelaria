@@ -1,6 +1,10 @@
 /* ============================================================
    FORMULÁRIOS: entrada, saída e registro
+   Campos ficam dentro de "form", para não afetar buscas
+   e outros controles fora do formulário.
    ============================================================ */
+
+/* ---------- Seções ---------- */
 
 #entrada,
 #saida,
@@ -20,6 +24,8 @@
   margin-bottom: 24px;
 }
 
+/* ---------- Card do formulário ---------- */
+
 #entrada form,
 #saida form,
 #registro form {
@@ -32,36 +38,42 @@
   text-align: left;
 }
 
-#entrada form > div,
-#saida form > div,
-#registro form > div {
+/* grupo de campo (label + input); exclui a linha de botões */
+#entrada form > div:not(.form-acoes),
+#saida form > div:not(.form-acoes),
+#registro form > div:not(.form-acoes) {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.form-acoes {
-  flex-direction: row !important;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-#entrada label,
-#saida label,
-#registro label {
+#entrada form label,
+#saida form label,
+#registro form label {
   font-size: 0.9rem;
   color: #c9cbd6;
 }
 
-/* campos: input, select e textarea compartilham o mesmo visual */
-#entrada input,
-#entrada select,
-#saida input,
-#registro input,
-#registro select,
-#registro textarea {
+/* linha de botões (Registrar + Voltar) */
+.form-acoes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* ---------- Campos ---------- */
+
+#entrada form input,
+#entrada form select,
+#saida form input,
+#saida form select,
+#registro form input,
+#registro form select,
+#registro form textarea {
   width: 100%;
   box-sizing: border-box;
   padding: 10px 14px;
@@ -75,29 +87,32 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-#registro textarea {
+#entrada form select,
+#saida form select,
+#registro form select {
+  cursor: pointer;
+}
+
+#registro form textarea {
   resize: vertical;
 }
 
-#entrada input:focus,
-#entrada select:focus,
-#saida input:focus,
-#registro input:focus,
-#registro select:focus,
-#registro textarea:focus {
+#entrada form input:focus,
+#entrada form select:focus,
+#saida form input:focus,
+#saida form select:focus,
+#registro form input:focus,
+#registro form select:focus,
+#registro form textarea:focus {
   border-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
 }
 
-#entrada select,
-#registro select {
-  cursor: pointer;
-}
+/* ---------- Botões de envio (cor muda por tela) ---------- */
 
-/* botões de envio: cor muda conforme a tela */
-#entrada button[type='submit'],
-#saida button[type='submit'],
-#registro button[type='submit'] {
+#entrada form button[type='submit'],
+#saida form button[type='submit'],
+#registro form button[type='submit'] {
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -108,44 +123,54 @@
   transition: background 0.2s, transform 0.15s;
 }
 
-#entrada button[type='submit'],
-#registro button[type='submit'] {
+#entrada form button[type='submit'],
+#registro form button[type='submit'] {
   background: #2e7d32;
 }
 
-#entrada button[type='submit']:hover,
-#registro button[type='submit']:hover {
+#entrada form button[type='submit']:hover,
+#registro form button[type='submit']:hover {
   background: #276a2b;
   transform: translateY(-1px);
 }
 
-#saida select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #444;
-  background: #2a2b35;
-  color: #fff;
-  font-family: inherit;
-  font-size: 1rem;
-  outline: none;
-  cursor: pointer;
-}
-
-#saida select:focus {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
-}
-
-#saida button[type='submit'] {
+#saida form button[type='submit'] {
   background: #c62828;
 }
 
-#saida button[type='submit']:hover {
+#saida form button[type='submit']:hover {
   background: #ab2222;
   transform: translateY(-1px);
 }
+
+/* ---------- Link "Voltar" ---------- */
+
+#entrada form a,
+#saida form a,
+#registro form a {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #343644;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* ---------- Mensagem de retorno do servidor ---------- */
+
+#entrada > p,
+#saida > p,
+#registro > p {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #343644;
+  text-align: center;
+}
+
+/* ---------- Seletor de produto (pesquisa) ---------- */
 
 .seletor-produto {
   position: relative;
@@ -209,7 +234,8 @@
   cursor: pointer;
 }
 
-/* lista de produtos na tela de registro */
+/* ---------- Tela de registro: lista de produtos ---------- */
+
 .registro-titulo-lista {
   margin-top: 32px;
   font-size: 1.5rem;
@@ -246,12 +272,18 @@
   color: #9a9cad;
 }
 
+.registro-dica {
+  margin: 0;
+  text-align: center;
+}
+
 .registro-item-acoes {
   display: flex;
   gap: 8px;
   flex-shrink: 0;
 }
 
+/* seletor com especificidade maior, sem precisar de !important */
 .registro-item-acoes button,
 .registro-cancelar {
   padding: 6px 12px;
@@ -263,16 +295,12 @@
   cursor: pointer;
 }
 
-.registro-excluir {
-  background: #c62828 !important;
+.registro-item-acoes .registro-excluir {
+  background: #c62828;
 }
 
-.registro-dica {
-  margin: 0;
-  text-align: center;
-}
+/* ---------- Paginação ---------- */
 
-/* paginação da lista de produtos */
 .paginacao {
   display: flex;
   align-items: center;
@@ -301,30 +329,7 @@
   color: #9a9cad;
 }
 
-/* link "Voltar" */
-#entrada a,
-#saida a,
-#registro a {
-  display: inline-block;
-  padding: 12px 20px;
-  border-radius: 8px;
-  background: #343644;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  text-align: center;
-}
-
-/* mensagem de retorno do servidor */
-#entrada > p,
-#saida > p,
-#registro > p {
-  margin-top: 16px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #343644;
-  text-align: center;
-}
+/* ---------- Celular estreito ---------- */
 
 @media (max-width: 380px) {
   #entrada form,

@@ -23,7 +23,6 @@
 .btn-entrada {
   color: #ffffff;
   background: #2e7d32;
-  margin: 5px;
 }
 
 .btn-entrada:hover {
@@ -33,7 +32,6 @@
 .btn-saida {
   color: #ffffff;
   background: #c62828;
-  margin: 5px;
 }
 
 .btn-saida:hover {
@@ -43,7 +41,6 @@
 .btn-registro {
   color: #ffffff;
   background: #343644;
-  margin: 5px;
 }
 
 .btn-registro:hover {
@@ -52,19 +49,30 @@
 
 .btn-group {
   display: flex;
-  flex-direction: column;
-  align-items: initial;
-  width: 170px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 260px;
   padding-top: 10px;
+}
+
+.btn-group .btn {
+  flex: 0 0 calc(50% - 5px);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 12px;
+  text-align: center;
 }
 
 /* botões de link (Movimentações, Ver estoque completo, Voltar) */
 .botao-logs,
 .botao-voltar {
-  display: block;
+  display: flex;
   width: fit-content;
   margin: 16px auto 0;
-  padding: 12px 16px;
+  padding: 15px 25px;
   border-radius: 8px;
   background: #343644;
   color: #fff;
@@ -107,4 +115,8 @@
 .botao-sair:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
+}
+
+.botoes-logs {
+  display: flex;
 }

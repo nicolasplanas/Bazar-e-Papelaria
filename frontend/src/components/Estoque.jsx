@@ -35,18 +35,18 @@ function Estoque() {
       {erro && <p>{erro}</p>}
 
       {!carregando && !erro && (
-        <div className="estoque-lista">
-          <div className="estoque-cabecalho">
+        <div className="top-lista">
+          <div className="top-cabecalho">
             <span>Produto</span>
             <span>Categoria</span>
             <span>Quantidade</span>
           </div>
 
           {principais.length === 0 ? (
-            <div className="estoque-vazio">Nenhum produto cadastrado</div>
+            <div className="top-vazio">Nenhum produto cadastrado</div>
           ) : (
             principais.map((p) => (
-              <div className="estoque-linha" key={p.id}>
+              <div className="top-linha" key={p.id}>
                 <span>{p.nome}</span>
                 <span>{p.categoria}</span>
                 <span>{p.quantidade}</span>
@@ -56,14 +56,15 @@ function Estoque() {
         </div>
       )}
 
-      <Link to="/estoque" className="botao-logs" translate="no">
-        Estoque completo
-      </Link>
+      <div className="botoes-logs">
+        <Link to="/estoque" className="botao-logs" translate="no">
+          Estoque completo
+        </Link>
 
-      <Link to="/logs" className="botao-logs" translate="no">
-        Movimentações
-      </Link>
-
+        <Link to="/logs" className="botao-logs" translate="no">
+          Movimentações
+        </Link>
+      </div>
     </section>
   )
 }

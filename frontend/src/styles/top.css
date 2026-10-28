@@ -1,0 +1,79 @@
+/* ============================================================
+   TOP 5 (tela inicial)
+   ============================================================ */
+
+#estoque-layout {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#estoque-layout h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.top-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* grade mais estreita, e a coluna de quantidade não quebra */
+.top-cabecalho,
+.top-linha {
+  column-gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.top-cabecalho {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 96px;
+  align-items: center;
+}
+
+.top-linha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 64px 20px;
+  align-items: center;
+  background: #1e1f27;
+}
+
+.top-cabecalho {
+  font-weight: bold;
+  background: #343644;
+}
+
+.top-cabecalho > span,
+.top-linha > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.top-cabecalho > span:nth-child(1),
+.top-linha > span:nth-child(1) {
+  justify-self: start;
+  text-align: left;
+}
+
+.top-cabecalho > span:nth-child(2),
+.top-linha > span:nth-child(2) {
+  justify-self: center;
+  text-align: center;
+}
+
+.top-cabecalho > span:nth-child(3),
+.top-linha > span:nth-child(3) {
+  justify-self: end;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.top-vazio {
+  padding: 16px;
+  text-align: center;
+}
